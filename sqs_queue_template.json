@@ -1,0 +1,67 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Template to create a sample queue",
+    "Parameters": {
+        "StandardQueueName": {
+            "Type": "String",
+            "Description": "Standard Queue Name",
+            "Default": "DemoStandardQueue"
+        },
+        "FifoQueueName": {
+            "Type": "String",
+            "Description": "Fifo Queue Name",
+            "Default": "DemoFifoQueue.fifo"
+        }
+    },
+    "Resources": {
+        "MyStandardQueue": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+                "QueueName": {
+                    "Ref": "StandardQueueName"
+                }
+            }
+        },
+        "MyFifoQueue": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+                "QueueName": {
+                    "Ref": "FifoQueueName"
+                },
+                "FifoQueue": true
+            }
+        }
+    },
+    "Outputs": {
+        "StandardQueueURL": {
+            "Description": "Queue URL for standard queue",
+            "Value": {
+                "Ref": "MyStandardQueue"
+            }
+        },
+        "FifoQueueURL": {
+            "Description": "Queue URL for Fifo queue",
+            "Value": {
+                "Ref": "MyFifoQueue"
+            }
+        },
+        "StandardQueueArn": {
+            "Description": "Queue Arn for Standard queue",
+            "Value": {
+                "Fn::GetAtt": [
+                    "MyStandardQueue",
+                    "Arn"
+                ]
+            }
+        },
+        "FifoQueueArn": {
+            "Description": "Queue Arn for FIFO queue",
+            "Value": {
+                "Fn::GetAtt": [
+                    "MyFifoQueue",
+                    "Arn"
+                ]
+            }
+        }
+    }
+}
