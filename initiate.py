@@ -4,7 +4,9 @@ def create_ec2_instance(instance_type, key_name):
   # Create EC2 Instance
   ec2 = boto3.resource('ec2')
   instances = ec2.create_instances(
-    ImageId='ami-08e4e35cccc6189f4',
+    # Ubuntu - ami-052efd3df9dad4825
+    # ami-08e4e35cccc6189f4
+    ImageId='ami-052efd3df9dad4825',
     MinCount=1,
     MaxCount=1,
     InstanceType=instance_type,
@@ -46,6 +48,6 @@ def create_bucket(bucket_name, region_name):
       break
   return
 
-create_ec2_instance('t2.micro', 'vockey')
+create_ec2_instance('t2.micro', 'vockey1')
 create_sns_topic('sns-s2030507')
 create_bucket('bucket-s2030507', 'us-east-1')

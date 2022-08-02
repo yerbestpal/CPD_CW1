@@ -4,14 +4,14 @@ import boto3
 import logging
 from botocore.exceptions import ClientError
 
-# logger config
+# logger config.
 logger = logging.getLogger()
 logging.basicConfig(
   level=logging.INFO,
   format='%(asctime)s: %(levelname)s: %(message)s'
 )
 
-# Loop through images and upload to S3 bucket with a 30 second delay between uploads
+# Loop through images and upload to S3 bucket with a 30 second delay between uploads.
 def upload_images(dir):
   session = boto3.Session()
   s3 = session.resource('s3')
@@ -22,9 +22,9 @@ def upload_images(dir):
       with open(dir_path, 'rb') as data:
         bucket.put_object(Key=dir_path[len(dir) + 1 :], Body=data)
 
-        # Publish message to SNS
+        # Publish message to SNS.
         message_id = publish_message(
-          'arn:aws:sns:us-east-1:915015556369:snsS2030507',
+          'arn:aws:sns:us-east-1:973567983713:sns-s2030507',
           data,
           'Image upload status'
         )
@@ -32,9 +32,7 @@ def upload_images(dir):
 
 
 def publish_message(topic_arn, message, subject):
-    """
-    Publishes a message to a topic.
-    """
+    # Publishes a message to a topic.
     try:
       sns = boto3.client('sns')
       response = sns.publish(
@@ -44,7 +42,7 @@ def publish_message(topic_arn, message, subject):
       )['MessageId']
 
     except ClientError:
-        logger.exception(f'Could not publish message to the topic.')
+        logger.exception('ERROR: Couldn\'t publish message to the topic.')
         raise
     else:
         return response
