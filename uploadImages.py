@@ -15,7 +15,7 @@ logging.basicConfig(
 def upload_images(dir):
   session = boto3.Session()
   s3 = session.resource('s3')
-  bucket = s3.Bucket('buckets2030507')
+  bucket = s3.Bucket('bucket-s2030507')
   for subdir, dirs, files in os.walk(dir):
     for file in files:
       dir_path = os.path.join(subdir, file)
