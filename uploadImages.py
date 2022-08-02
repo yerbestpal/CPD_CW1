@@ -34,7 +34,7 @@ def upload_images(dir):
 def publish_message(topic_arn, message, subject):
     # Publishes a message to a topic.
     try:
-      sns = boto3.client('sns')
+      sns = boto3.client('sns', region_name='us-east-1')
       response = sns.publish(
           TopicArn=topic_arn,
           Message=message,
