@@ -5,26 +5,32 @@
         "StandardQueueName": {
             "Type": "String",
             "Description": "Standard Queue Name",
-            "Default": "DemoStandardQueue"
+            "Default": "StandardQueue"
         },
         "FifoQueueName": {
             "Type": "String",
             "Description": "Fifo Queue Name",
-            "Default": "DemoFifoQueue.fifo"
+            "Default": "FifoQueue.fifo"
         }
     },
     "Resources": {
         "MyStandardQueue": {
+            "UpdateReplacePolicy": "Delete",
+            "DeletionPolicy": "Retain",
             "Type": "AWS::SQS::Queue",
             "Properties": {
+                "MessageRetentionPeriod": "1209600",
                 "QueueName": {
                     "Ref": "StandardQueueName"
                 }
             }
         },
         "MyFifoQueue": {
+            "UpdateReplacePolicy": "Delete",
+            "DeletionPolicy": "Retain",
             "Type": "AWS::SQS::Queue",
             "Properties": {
+                "MessageRetentionPeriod": "1209600",
                 "QueueName": {
                     "Ref": "FifoQueueName"
                 },
