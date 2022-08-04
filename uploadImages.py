@@ -22,8 +22,11 @@ def upload_images(dir):
       with open(dir_path, 'rb') as data:
         bucket.put_object(Key=dir_path[len(dir) + 1 :], Body=data)
 
+        print('Uploaded ' + str(file))
+
         # Publish message to SNS.
-        message_id = publish_message(
+        # message_id = ...
+        publish_message(
           'arn:aws:sns:us-east-1:973567983713:sns-s2030507',
           data,
           'Image upload status'
