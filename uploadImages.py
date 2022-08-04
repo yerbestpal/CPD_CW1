@@ -37,7 +37,7 @@ def publish_message(topic_arn, message, subject):
       sns = boto3.client('sns', region_name='us-east-1')
       response = sns.publish(
           TopicArn=topic_arn,
-          Message=message,
+          Message=str(message),
           Subject=subject,
       )['MessageId']
 
