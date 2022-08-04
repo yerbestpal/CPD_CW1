@@ -15,7 +15,7 @@
     },
     "Resources": {
         "MyStandardQueue": {
-            "UpdateReplacePolicy": "Delete",
+            "UpdateReplacePolicy": "Retain",
             "DeletionPolicy": "Retain",
             "Type": "AWS::SQS::Queue",
             "Properties": {
@@ -26,7 +26,7 @@
             }
         },
         "MyFifoQueue": {
-            "UpdateReplacePolicy": "Delete",
+            "UpdateReplacePolicy": "Retain",
             "DeletionPolicy": "Retain",
             "Type": "AWS::SQS::Queue",
             "Properties": {
