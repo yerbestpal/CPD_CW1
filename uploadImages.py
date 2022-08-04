@@ -26,7 +26,7 @@ def upload_images(dir):
 
         # Publish message to SNS.
         # message_id = ...
-        publish_message(
+        message_id = publish_message(
           'arn:aws:sns:us-east-1:973567983713:sns-s2030507',
           data,
           'Image upload status'
