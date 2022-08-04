@@ -33,6 +33,8 @@ def upload_images(dir):
         )
         time.sleep(30)
 
+        print(message_id)
+
 
 def publish_message(topic_arn, message, subject):
     # Publishes a message to a topic.
