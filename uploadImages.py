@@ -31,10 +31,8 @@ def upload_images(dir):
           data,
           'Image upload status'
         )
-        time.sleep(30)
-
         print(message_id)
-
+        time.sleep(30)
 
 def publish_message(topic_arn, message, subject):
     # Publishes a message to a topic.
