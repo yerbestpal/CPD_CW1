@@ -28,7 +28,9 @@ def lambda_handler(event, context):
   event_body = event['Records'][0]['body']
   if event_body not in results:
     send_sms(event_body)
-    print('SMS sent!' + '\n' + str(event_body) + 'does not contain any PPE!' + '\n')
+    print('SMS sent!' + '\n' + str(event_body) + ' does not contain any PPE!' + '\n')
+  else:
+        print(str(event_body) + ' contains PPE!' + '\n')
   return {
       'statusCode': 200,
       'body': json.dumps(event)
