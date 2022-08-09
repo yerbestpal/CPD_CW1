@@ -33,7 +33,7 @@ def lambda_handler(event, context):
       for person in response['Persons']:
         body_parts = person['BodyParts']
         result = {
-          'ImageName': image,
+          'Image_Name': image,
           'Details': []
         }
 
@@ -56,3 +56,11 @@ def lambda_handler(event, context):
         
         if len(result['Details']) > 0:
           results.append(result)
+
+        table = boto3.resource('dynamodb').Table('S2030507_Image_Data')
+        table.put_item(
+          Item={
+            'Image_Name': image,
+            'Labels': result
+          }
+        )
