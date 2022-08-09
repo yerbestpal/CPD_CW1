@@ -4,10 +4,10 @@ import boto3
 # Send SMS
 def send_sms():
   sns = boto3.client('sns')
-  phone_number = '+44- 7722509271'
+  phone_number = '+447722509271'
   message_content = 'Message successful!'
   message_attributes = {
-    "AWS.SNS.SMS.SMSType": {
+    'AWS.SNS.SMS.SMSType': {
         'DataType': 'String',
         'StringValue': 'Transactional',
     }
@@ -15,8 +15,14 @@ def send_sms():
   sns.publish(
     PhoneNumber=phone_number,
     Message=str(message_content),
-    MessageAttributes=message_attributes,
+    MessageAttributes=message_attributes
   )
   
-# Call function
-send_sms()
+def lambda_handler(event, context):
+  # Call function
+  print("It worked!")
+  send_sms(event, context)
+  return {
+      'statusCode': 200,
+      'body': json.dumps(str(event['Records'][0]))
+  }

@@ -28,7 +28,7 @@ def upload_images(dir):
         # message_id = ...
         message_id = publish_message(
           'arn:aws:sns:us-east-1:973567983713:sns-s2030507',
-          data,
+          file,
           'Image upload status'
         )
         print(message_id)
