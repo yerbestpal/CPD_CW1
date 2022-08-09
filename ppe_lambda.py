@@ -23,7 +23,7 @@ def lambda_handler(event, context):
           'MinConfidence': 80,
           'RequiredEquipmentTypes': [
             'FACE_COVER',
-            'HEAD_COVER'
+            'HAND_COVER'
           ]
         }
       )
